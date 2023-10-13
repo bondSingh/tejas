@@ -77,7 +77,7 @@ data class superHeros(val image: Int, val title: String, val subTitle: String)
 
 fun getHeroList(): MutableList<superHeros> {
     val heroList = mutableListOf<superHeros>()
-    heroList.add(superHeros(R.drawable.spider_man, "Spider Man", "Webb Power"))
+    heroList.add(superHeros(R.drawable.spider_man, "Spider Man 2", "Webb Power"))
     heroList.add(superHeros(R.drawable.super_dad, "Super Dad", "Does Things"))
     heroList.add(superHeros(R.drawable.captain_owl, "Captain Owl", "Shield"))
     heroList.add(superHeros(R.drawable.red_man, "Super Man", "Fly Fast"))
