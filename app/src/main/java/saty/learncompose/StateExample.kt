@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun NotificationScreen() {
     //State hoisting
-    var count = rememberSaveable { mutableStateOf(0) }
+    val count = rememberSaveable { mutableStateOf(0) }
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -33,17 +34,20 @@ fun NotificationScreen() {
     ) {
 
         NotificationCounter(count.value) { count.value++ }
-        MessageBar(count.value)
+        MessageBar(count.value) { count.value-- }
 
     }
 }
 
 //Unidirectional flow. Data flow from parent to childs, events fow in opposite
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MessageBar(count: Int) {
+fun MessageBar(count: Int, decrement: () -> Unit) {
     Card(
+        onClick = decrement,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+
     ) {
         Row(
             Modifier.padding(8.dp),
@@ -63,7 +67,7 @@ fun MessageBar(count: Int) {
 fun NotificationCounter(count: Int, increment: () -> Unit) {
     Column(verticalArrangement = Arrangement.Center) {
         Text(text = "You have sent $count notifications")
-        Button(onClick = increment ) {
+        Button(onClick = increment) {
             Text(text = "Send Notification")
         }
     }
