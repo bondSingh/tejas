@@ -14,8 +14,8 @@ import saty.learncompose.ui.QuoteList
 import saty.learncompose.ui.theme.montserratFontBold
 
 @Composable
-fun QuoteListScreen(data: Array<Quote>, onClick: () -> Unit) {
-    Column {
+fun QuoteListScreen(data: Array<Quote>, onClick: (quote: Quote) -> Unit) {
+    Column() {
         Text(
             text = "Quotes App",
             textAlign = TextAlign.Center,
@@ -25,8 +25,7 @@ fun QuoteListScreen(data: Array<Quote>, onClick: () -> Unit) {
             style = MaterialTheme.typography.titleLarge,
             fontFamily = montserratFontBold
         )
-        QuoteList(quotes = data) {
-        }
+        QuoteList(quotes = data, onClick)
     }
 
 }

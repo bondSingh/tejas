@@ -1,6 +1,7 @@
 package saty.learncompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -28,16 +29,29 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun App() {
-        if (DataManager.isDataLoaded.value){
-            QuoteListScreen(data = DataManager.data) {
+        if (DataManager.isDataLoaded.value) {
+            if (DataManager.currentPage.value == Pages.LISTING) {
+                QuoteListScreen(data = DataManager.data) {
+                    Log.d("saty","App()")
+                    DataManager.switchPages(it)
+                }
+            } else {
+                DataManager.currentQuote?.let { QuoteDetail(quote = it) }
             }
-        } else{
-            Box(contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize(1f)){
+
+        } else {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize(1f)
+            ) {
                 Text(text = "Loading...")
             }
         }
     }
 }
 
+enum class Pages {
+    LISTING,
+    DETAIL
+}
 
