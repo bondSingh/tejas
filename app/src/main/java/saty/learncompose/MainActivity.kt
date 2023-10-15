@@ -14,16 +14,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import saty.learncompose.ui.theme.LearnComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         CoroutineScope(Dispatchers.IO).launch {
-            delay(5000)
+            delay(1000)
             DataManager.loadAssetFromFile(applicationContext)
         }
         setContent {
-            App()
+            LearnComposeTheme {
+                App()
+            }
         }
     }
 
@@ -32,7 +35,7 @@ class MainActivity : ComponentActivity() {
         if (DataManager.isDataLoaded.value) {
             if (DataManager.currentPage.value == Pages.LISTING) {
                 QuoteListScreen(data = DataManager.data) {
-                    Log.d("saty","App()")
+                    Log.d("saty", "App()")
                     DataManager.switchPages(it)
                 }
             } else {

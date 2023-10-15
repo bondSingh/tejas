@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,12 +25,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import saty.learncompose.models.Quote
-import saty.learncompose.ui.theme.montserratFontBold
-import saty.learncompose.ui.theme.montserratFontlight
 
 
 @Composable
-fun QuoteListItem(quote: Quote, onClick: (quote:Quote)->Unit) {
+fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(5.dp),
@@ -51,7 +50,7 @@ fun QuoteListItem(quote: Quote, onClick: (quote:Quote)->Unit) {
             Column(modifier = Modifier.weight(1.0f)) {
                 Text(
                     text = quote.content,
-                    fontFamily = montserratFontlight
+                    style = MaterialTheme.typography.displayMedium
                 )
                 Box(
                     modifier = Modifier
@@ -59,8 +58,9 @@ fun QuoteListItem(quote: Quote, onClick: (quote:Quote)->Unit) {
                         .fillMaxWidth(0.4f)
                         .height(1.dp)
                 )
-                Text(text = quote.author,
-                    fontFamily = montserratFontBold
+                Text(
+                    text = quote.author,
+                    style = MaterialTheme.typography.displayLarge
                 )
             }
         }

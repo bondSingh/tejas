@@ -10,6 +10,32 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import saty.learncompose.R
 
+
+@OptIn(ExperimentalTextApi::class)
+val montserratFontBold =
+    FontFamily(
+        Font(
+            R.font.montserrat_weighted,
+            variationSettings = FontVariation.Settings(
+                FontVariation.weight(950),
+                FontVariation.width(30f),
+                FontVariation.slant(-6f),
+            )
+        )
+    )
+
+@OptIn(ExperimentalTextApi::class)
+val montserratFontLight =
+    FontFamily(
+        Font(
+            R.font.montserrat_italic,
+            variationSettings = FontVariation.Settings(
+                FontVariation.weight(500),
+                FontVariation.width(20f),
+                FontVariation.slant(-2f),
+            )
+        )
+    )
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
@@ -18,7 +44,19 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
+    ),
+    displayMedium = TextStyle(
+        fontFamily = montserratFontLight,
+        fontSize = 20.sp
+
+    ),
+    displayLarge = TextStyle(
+        fontFamily = montserratFontBold,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
     )
+
+
 
     /* Other default text styles to override
     titleLarge = TextStyle(
@@ -39,28 +77,3 @@ val Typography = Typography(
 )
 
 
-@OptIn(ExperimentalTextApi::class)
-val montserratFontBold =
-    FontFamily(
-        Font(
-            R.font.montserrat_weighted,
-            variationSettings = FontVariation.Settings(
-                FontVariation.weight(950),
-                FontVariation.width(30f),
-                FontVariation.slant(-6f),
-            )
-        )
-    )
-
-@OptIn(ExperimentalTextApi::class)
-val montserratFontlight =
-    FontFamily(
-        Font(
-            R.font.montserrat_italic,
-            variationSettings = FontVariation.Settings(
-                FontVariation.weight(500),
-                FontVariation.width(20f),
-                FontVariation.slant(-2f),
-            )
-        )
-    )

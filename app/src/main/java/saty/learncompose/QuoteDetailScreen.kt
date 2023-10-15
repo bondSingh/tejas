@@ -27,7 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import saty.learncompose.models.Quote
 import saty.learncompose.ui.theme.montserratFontBold
-import saty.learncompose.ui.theme.montserratFontlight
+import saty.learncompose.ui.theme.montserratFontLight
 
 
 @Composable
@@ -66,7 +66,7 @@ fun QuoteDetail(quote: Quote){
                         .rotate(180F)
                 )
                 Text(text = quote.content,
-                    fontFamily = montserratFontlight,
+                    fontFamily = montserratFontLight,
                     style = MaterialTheme.typography.headlineLarge)
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = quote.author,
