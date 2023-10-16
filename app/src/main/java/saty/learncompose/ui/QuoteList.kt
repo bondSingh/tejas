@@ -7,11 +7,11 @@ import saty.learncompose.QuoteListItem
 import saty.learncompose.models.Quote
 
 @Composable
-fun QuoteList(quotes: Array<Quote>, onClick: (quote:Quote)-> Unit){
+fun QuoteList(quotes: Array<Quote>, quoteItemClicked: (quote:Quote)-> Unit){
 
     LazyColumn(content = {
         items(quotes){
-            QuoteListItem(quote = it, onClick)
+            QuoteListItem(quote = it, quoteItemClicked)
         }
     })
 

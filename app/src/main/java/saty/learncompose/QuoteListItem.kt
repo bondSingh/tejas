@@ -28,12 +28,12 @@ import saty.learncompose.models.Quote
 
 
 @Composable
-fun QuoteListItem(quote: Quote, onClick: (quote: Quote) -> Unit) {
+fun QuoteListItem(quote: Quote, quoteItemClicked: (quote: Quote) -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier
-            .clickable { onClick(quote) }
+            .clickable { quoteItemClicked(quote) }
             .padding(8.dp)
     ) {
         Row(modifier = Modifier.padding(16.dp)) {
