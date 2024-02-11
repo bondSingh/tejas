@@ -6,8 +6,6 @@ data class Quote(
     val id: String,
     val author: String,
     val content: String,
-    val authorSlug: String,
-    val dateAdded: String
 )
 
 

@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -19,33 +20,37 @@ import kotlinx.coroutines.launch
 import saty.learncompose.ui.theme.LearnComposeTheme
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private val quoteManager = QuoteManager()
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //quoteManager = QuoteManager()
         CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
-            DataManager.loadAssetFromFile(applicationContext)
+            quoteManager.loadAssetFromFile("quotes.json", applicationContext)
         }
         setContent {
             App()
         }
+
     }
 
+    @Preview
     @Composable
     private fun App() {
         var theme = remember { mutableStateOf(false) }
         LearnComposeTheme(theme.value) {
-            if (DataManager.isDataLoaded.value) {
-                if (DataManager.currentPage.value == Pages.LISTING) {
-                    QuoteListScreen(data = DataManager.data,
+            if (quoteManager.isDataLoaded.value) {
+                if (quoteManager.currentPage.value == Pages.LISTING) {
+                    QuoteListScreen(data = quoteManager.quoteList,
                         dayNightThemeClick = {
                             Log.d("saty", "theme is :: ${theme.value}")
                             theme.value = !theme.value
                         }) {
                         Log.d("saty", "App()")
-                        DataManager.switchPages(it)
+                        quoteManager.switchPages(it)
                     }
                 } else {
-                    DataManager.currentQuote?.let { QuoteDetail(quote = it) }
+                    quoteManager.currentQuoteItem?.let { QuoteDetail(quote = it) }
                 }
 
             } else {
