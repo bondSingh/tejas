@@ -33,7 +33,7 @@ import saty.learncompose.ui.theme.montserratFontLight
 @Composable
 fun QuoteDetail(quote: Quote){
     BackHandler {
-        QuoteManager().switchPages(quote)
+        QuoteManager.currentPage.value = Pages.LISTING
     }
 
     Box(contentAlignment = Alignment.Center,

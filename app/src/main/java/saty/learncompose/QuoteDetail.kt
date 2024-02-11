@@ -21,10 +21,6 @@ class QuoteDetail : AppCompatActivity() {
 
         binding = ActivityQuoteDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val handlerThread = HandlerThread("saty")
-        handlerThread.start()
-        var handler = Handler(handlerThread.looper)
         setSupportActionBar(binding.toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment_content_quote_detail)

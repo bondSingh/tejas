@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import saty.learncompose.ui.theme.LearnComposeTheme
 
 class MainActivity : ComponentActivity() {
-    private val quoteManager = QuoteManager()
+    private val quoteManager = QuoteManager
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //quoteManager = QuoteManager()

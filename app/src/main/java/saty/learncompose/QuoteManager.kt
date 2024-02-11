@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import com.google.gson.Gson
 import saty.learncompose.models.Quote
 
-class QuoteManager() {
+object QuoteManager {
     var quoteList = emptyArray<Quote>()
 
     var currentPage = mutableStateOf(Pages.LISTING)
@@ -31,7 +31,7 @@ class QuoteManager() {
     }
 
     fun switchPages(quote: Quote?) {
-        if (currentPage.value == Pages.LISTING) {
+        if (currentPage.value == Pages.LISTING && quote != null) {
             currentQuoteItem = quote
             currentPage.value = Pages.DETAIL
         } else {
